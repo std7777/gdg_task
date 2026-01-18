@@ -4,7 +4,7 @@
 
 We first find the IP of the victim machine by a Nmap host discovery scan.
 
-![alt text](image-7.png)
+![alt text](images/image-7.png)
 
 ```
 nmap -sn 172.16.222.190/21
@@ -16,7 +16,7 @@ MAC Address: 08:00:27:6D:C8:67 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
 
 The victim ip is 172.16.222.196. We proceed to perform a port scan 
 
-![alt text](image-8.png)
+![alt text](images/image-8.png)
 
 21/tcp  open  ftp      vsftpd 3.0.5
 22/tcp  open  ssh      OpenSSH 10.0p2 Debian 7 (protocol 2.0)
@@ -28,14 +28,14 @@ the ports themselves dont bare any vulnerabilities.
 We connect to the http port using the browser and find a food ordering portal and login and register endpoints.
 We use gobuster to find exposed endpoints. 
 
-![alt text](<Screenshot 2026-01-18 191255.png>)
+![alt text](<images/Screenshot 2026-01-18 191255.png>)
 
-![alt text](image-9.png)
+![alt text](images/image-9.png)
 
 going back from this page we land on the admin page.
 
-![alt text](image-10.png)
-![alt text](image-11.png)
+![alt text](images/image-10.png)
+![alt text](images/image-11.png)
 
 the same page can be reached from with the actual admin email admin@foodify.com using the JWT_secret later discovered.
 from here we can download log file.
@@ -54,20 +54,20 @@ The log file we obtain also contained ftp user/pass of backup
 2024-10-17T21:23:11Z INFO  ftpd[2077]: USER backup
 2024-10-17T21:23:11Z INFO  ftpd[2077]: PASS oLd$bAcKuPsN@ThInGt@sEeHeRe
 ```
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 
 in the notes/laptop_refresh.txt file we find user/pass of intern. this gives us ssh access to server through intern user.
 
 
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 
 (i tried using id_rsa to login into other users by i was unsuccessful)
 
-![alt text](image-19.png)
+![alt text](images/image-19.png)
 
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 
 the secret_recipe is owned by root and intern isnt on the sudoer file. we look for other files that intern can read by the command
 
@@ -82,7 +82,7 @@ DATABASE_URL=file:prisma/dev.db
 JWT_SECRET="super-secret-dev-key"
 ```
 We check the sqlite db and find emails of users.
-![alt text](image-16.png)
+![alt text](images/image-16.png)
 
 
 --- Dumping table: User ---
@@ -95,8 +95,8 @@ We check the sqlite db and find emails of users.
 (7, 'john', '$2b$10$/6Fq7IPaIczFvdO9T0HaneyZJoKINToCW39FTLg3L/1oYM4yFWtOa', 0, '2026-01-17T17:32:50.762+00:00')
 
 The jwt_secret can help us forge a acceptable cookie. 
-![alt text](image-18.png)
-![alt text](image-17.png)
+![alt text](images/image-18.png)
+![alt text](images/image-17.png)
 
 ---
 i havent found anything beyond this point.

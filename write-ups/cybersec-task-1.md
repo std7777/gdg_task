@@ -10,7 +10,7 @@ flag part1 = gdg{sw1ss
 
 ## part 3
 
-there is open source npm package to scan qr codes from an image
+there is an open source npm package to scan qr codes from an image
 
 https://github.com/victorperin/qr-scanner-cli
 

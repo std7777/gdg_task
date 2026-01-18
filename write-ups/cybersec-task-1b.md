@@ -16,17 +16,17 @@ You found the hidden treasure: %s
 ```
 which was uncovered by the strings command.
 
-![alt text](<Screenshot 2026-01-17 201208.png>)
+![alt text](<images/Screenshot 2026-01-17 201208.png>)
 
 
 This indicates that the string is used from some other part of the program .On clicking the string in ghirda we get the def_nothing_important method that construct an byte array on the stack and decodes it using XOR. 
 
-![alt text](<Screenshot 2026-01-17 200608.png>)
-![alt text](<Screenshot 2026-01-17 200520.png>)
+![alt text](<images/Screenshot 2026-01-17 200608.png>)
+![alt text](<images/Screenshot 2026-01-17 200520.png>)
 
 We can uncover the final value of local_26 using CyberChef. 
 A recipe of Hex from and XOR with key=5 will give the decoded flag.
 
-![alt text](<Screenshot 2026-01-17 202152.png>)
+![alt text](<images/Screenshot 2026-01-17 202152.png>)
 
 flag = gdg{P1E_3xpl01ted_lol}
