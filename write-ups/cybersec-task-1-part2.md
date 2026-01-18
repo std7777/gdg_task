@@ -2,7 +2,7 @@
 
 ## part 2
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 ![alt text](image-1.png)
 
